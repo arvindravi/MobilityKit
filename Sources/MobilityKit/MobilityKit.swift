@@ -13,7 +13,7 @@ public class MobilityKit {
         self.store = store
     }
     
-    func requestAuthorization() {
+    public func requestAuthorization() {
         store.requestAuthorization(toShare: nil,
                                    read: typesToRead) { (success, error) in
             if !success, let error = error {
@@ -22,7 +22,7 @@ public class MobilityKit {
         }
     }
     
-    func walkingSpeedSamples(_ completion: @escaping () -> Void) {
+    public func walkingSpeedSamples(_ completion: @escaping () -> Void) {
         let start = Calendar.current.date(byAdding: .day, value: -30, to: .init())
         let end = Calendar.current.date(byAdding: .day, value: 60, to: .init())
         
