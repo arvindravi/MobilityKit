@@ -4,7 +4,7 @@ public class MobilityKit {
     
     public static let shared: MobilityKit = MobilityKit()
     
-    typealias WalkingSpeedSamplesResult = (Result<[HKSample]?, Error>) -> Void
+    public typealias WalkingSpeedSamplesResult = (Result<[HKSample]?, Error>) -> Void
     
     private let store: HKHealthStore
     private let typesToRead: Set = [
