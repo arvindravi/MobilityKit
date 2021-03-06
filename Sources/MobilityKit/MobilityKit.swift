@@ -2,7 +2,7 @@ import HealthKit
 
 public class MobilityKit {
     
-    public let shared: MobilityKit = MobilityKit()
+    public static let shared: MobilityKit = MobilityKit()
     
     private let store: HKHealthStore
     private let typesToRead: Set = [
