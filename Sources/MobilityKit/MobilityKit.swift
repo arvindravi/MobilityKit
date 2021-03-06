@@ -4,6 +4,8 @@ public class MobilityKit {
     
     public static let shared: MobilityKit = MobilityKit()
     
+    typealias WalkingSpeedSamplesResult = (Result<[HKSample]?, Error>) -> Void
+    
     private let store: HKHealthStore
     private let typesToRead: Set = [
         HKObjectType.quantityType(forIdentifier: .walkingSpeed)!
@@ -22,7 +24,7 @@ public class MobilityKit {
         }
     }
     
-    public func walkingSpeedSamples(_ completion: @escaping () -> Void) {
+    public func walkingSpeedSamples(_ completion: @escaping WalkingSpeedSamplesResult) {
         let start = Calendar.current.date(byAdding: .day, value: -30, to: .init())
         let end = Calendar.current.date(byAdding: .day, value: 60, to: .init())
         
@@ -36,7 +38,7 @@ public class MobilityKit {
                                   predicate: datePredicate,
                                   limit: HKObjectQueryNoLimit,
                                   sortDescriptors: [sortByStartDate]) { (_, samples, error) in
-            print(samples)
+            completion(.success(samples))
         }
         
         store.execute(query)
